@@ -1,0 +1,33 @@
+{
+  "Routes": [
+    // Data Web API
+    {
+      "UpstreamPathTemplate": "/api/TestCenters",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "datawebapi",
+          "Port": 8080
+        }
+      ],
+      "DownstreamPathTemplate": "/api/TestCenters"
+    },
+    {
+      "UpstreamPathTemplate": "/api/TestCenters/{id}",
+      "UpstreamHttpMethod": [ "Get", "Put", "Delete" ],
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "datawebapi",
+          "Port": 8080
+        }
+      ],
+      "DownstreamPathTemplate": "/api/TestCenters/{id}"
+    }
+
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:800"
+  }
+}

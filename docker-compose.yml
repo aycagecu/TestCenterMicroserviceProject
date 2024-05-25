@@ -1,0 +1,40 @@
+version: '3.4'
+
+networks:
+  backend:
+
+services:
+  customerdb:
+    container_name: test_center_db
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=test_center_123
+    networks:
+      - backend
+    ports:
+      - 18001:1433
+
+  datawebapi:
+    image: ${DOCKER_REGISTRY-}datawebapi
+    build:
+      context: .
+      dockerfile: DataWebApi/Dockerfile
+    networks:
+      - backend
+    environment:
+        - DB_HOST=test_center_db
+        - DB_NAME=test_center_db
+        - DB_SA_PASSWORD= test_center_123
+    
+  apigateway:
+    container_name: api-gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - 8001:8080
+    networks:
+      - backend
+  
