@@ -1,4 +1,5 @@
 ﻿using DataWebApi.Models;
+using DataWebApi.Models.Devices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -34,6 +35,10 @@ namespace DataWebApi
             modelBuilder.Entity<Register>()
                 .Property(r => r.Value)
                 .HasColumnType("nvarchar(max)"); // JSON formatında saklanacak alan
+
+            //modelBuilder.Entity<BaseDevice>().ToTable("BaseDevice");
+            //modelBuilder.Entity<RTUDevice>().ToTable("BaseDevice");
+            //modelBuilder.Entity<PLCDevice>().ToTable("BaseDevice");
         }
     }
 }

@@ -9,6 +9,11 @@ namespace DataWebApi.Models.Devices
         {
             plc = new Plc(CpuType.S71500, ipAddress, 0, 1);
         }
+
+        public PLCDevice(int id,string ipAddress, List<Register> registers) : base(id,ipAddress, registers)
+        {
+            plc = new Plc(CpuType.S71500, ipAddress, 0, 1);
+        }
         public PLCDevice()
         {
             

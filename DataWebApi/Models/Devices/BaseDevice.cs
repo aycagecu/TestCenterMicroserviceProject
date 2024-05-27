@@ -17,6 +17,13 @@ namespace DataWebApi.Models.Devices
         {
 
         }
+
+        public BaseDevice(int id, string ipAddress, List<Register> registers)
+        {
+            this.Id = id;
+            this.ipAddress = ipAddress;
+            this.registers = registers;
+        }
         public BaseDevice(string ipAddress, List<Register> registers)
         {
             this.ipAddress = ipAddress;
@@ -25,12 +32,12 @@ namespace DataWebApi.Models.Devices
 
         public virtual void ReadRegisters()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public virtual void WriteRegister(string address, object value)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

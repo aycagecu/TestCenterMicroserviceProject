@@ -27,9 +27,10 @@ namespace DataWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TestCenter>>> GetTestCenter()
         {
-            _testCenterController.GetValues();
+            //_testCenterController.GetValues();
             return await _context.TestCenter.ToListAsync();
         }
+
 
         // GET: api/TestCenters/5
         [HttpGet("{id}")]

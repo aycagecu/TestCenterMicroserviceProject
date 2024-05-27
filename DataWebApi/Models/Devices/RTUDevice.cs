@@ -1,49 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-//using NModbus;
-//using NModbus.Serial;
 using System;
 using System.IO.Ports;
-//using NModbus.Device;
 using System.Net.Sockets;
 using S7.Net;
-using EasyModbus;
-using static EasyModbus.ModbusServer;
 using System.Net;
-//using NModbus.Extensions.Enron;
+using NModbus.Extensions.Enron;
+using Modbus;
+using Modbus.Device;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Modbus.Extensions.Enron;
 
 namespace DataWebApi.Models.Devices
 {
     public class RTUDevice : BaseDevice
     {
+        private byte slaveId;
         private int port;
-        private EasyModbus.ModbusClient modbusClient;
-        public RTUDevice(string ipAddress, List<Register> registers) : base(ipAddress, registers)
+        private TcpClient tcpClient;
+        private ModbusIpMaster master;
+
+        public RTUDevice(int id, string ipAddress, byte slaveId, List<Register> registers) : base(id, ipAddress, registers)
         {
             //modbus icin gerekli
             port = 502;
-            modbusClient = new EasyModbus.ModbusClient(ipAddress, port);
+            this.slaveId = slaveId;
+        }
+        public RTUDevice(string ipAddress, byte slaveId, List<Register> registers) : base(ipAddress, registers)
+        {
+            //modbus icin gerekli
+            port = 502;
+            this.slaveId = slaveId;
         }
         public RTUDevice()
         {
-            
+
         }
 
+        /// <summary>
+        /// 13300-40001
+        /// </summary>
         public void ConnectRTU()
         {
-            modbusClient.Connect();
+            tcpClient = new TcpClient(ipAddress, port);
+            master = ModbusIpMaster.CreateIp(tcpClient);
         }
 
         public void DisconnectRTU()
         {
-            modbusClient.Disconnect();
+            tcpClient.Close();
+
         }
 
         public override void ReadRegisters()
         {
             ConnectRTU();
-            if (modbusClient.Connected)
+            if (tcpClient.Connected)
             {
                 foreach (var register in registers)
                 {
@@ -51,7 +64,7 @@ namespace DataWebApi.Models.Devices
                     {
                         if (register.IsReadable())
                         {
-                            register.SetValue(modbusClient.ReadHoldingRegisters(Convert.ToInt32(register.address), 1)[0]);
+                            register.SetValue(master.ReadHoldingRegisters(slaveId, Convert.ToUInt16(register.address) ,1));
                             db.SaveChanges();
                         }
                     }
@@ -65,10 +78,10 @@ namespace DataWebApi.Models.Devices
             DisconnectRTU();
         }
 
-        public override void WriteRegister(string address,object value)
+        public override void WriteRegister(string address, object value)
         {
             ConnectRTU();
-            if (modbusClient.Connected)
+            if (tcpClient.Connected)
             {
                 foreach (var register in registers)
                 {
@@ -76,7 +89,7 @@ namespace DataWebApi.Models.Devices
                     {
                         try
                         {
-                            modbusClient.WriteSingleRegister(Convert.ToInt32(register.address), Convert.ToInt32(value));
+                            master.WriteSingleRegister(slaveId,Convert.ToUInt16(register.address), Convert.ToUInt16(value));
                             register.SetValue(value);
                             db.SaveChanges();
                             break;
@@ -89,6 +102,19 @@ namespace DataWebApi.Models.Devices
                 }
             }
             DisconnectRTU();
+        }
+
+        private float GetFloat(ushort P1, ushort P2)
+        {
+            int intSign, intSignRest, intExponent, intExponentRest;
+            float faResult, faDigit;
+            intSign = P1 / 32768;
+            intSignRest = P1 % 32768;
+            intExponent = intSignRest / 128;
+            intExponentRest = intSignRest % 128;
+            faDigit = (float)(intExponentRest * 65536 + P2) / 8388608;
+            faResult = (float)Math.Pow(-1, intSign) * (float)Math.Pow(2, intExponent - 127) * (faDigit + 1);
+            return faResult;
         }
     }
 }
