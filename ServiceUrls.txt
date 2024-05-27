@@ -1,0 +1,2 @@
+datawebapi -> http://localhost:5137
+apigateway -> http://localhost:5281
