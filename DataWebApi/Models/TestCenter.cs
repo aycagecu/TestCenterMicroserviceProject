@@ -11,11 +11,6 @@ namespace DataWebApi.Models
         {
             
         }
-        public TestCenter(int id,List<BaseProcess> processes)
-        {
-            this.Id = id;
-            this.processes = processes;
-        }
         public TestCenter(List<BaseProcess> processes)
         {
             this.processes = processes;

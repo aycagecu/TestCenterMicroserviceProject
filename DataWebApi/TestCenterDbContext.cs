@@ -30,15 +30,16 @@ namespace DataWebApi
         public DbSet<DataWebApi.Models.Register> Register { get; set; } = default!;
         public DbSet<DataWebApi.Models.BaseProcess> BaseProcess { get; set; } = default!;
         public DbSet<DataWebApi.Models.Devices.BaseDevice> BaseDevice { get; set; } = default!;
+        public DbSet<DataWebApi.Models.Devices.RTUDevice> RTUDevice { get; set; } = default!;
+        public DbSet<DataWebApi.Models.Devices.PLCDevice> PLCDevice { get; set; } = default!;
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Register>()
                 .Property(r => r.Value)
                 .HasColumnType("nvarchar(max)"); // JSON formatında saklanacak alan
 
-            //modelBuilder.Entity<BaseDevice>().ToTable("BaseDevice");
-            //modelBuilder.Entity<RTUDevice>().ToTable("BaseDevice");
-            //modelBuilder.Entity<PLCDevice>().ToTable("BaseDevice");
         }
     }
 }

@@ -1,0 +1,12 @@
+<div class="grid-container">
+  <div *ngFor="let process of testCenters[0]?.processes" class="grid-item">
+    <h3>Process ID: {{ process.id }}</h3>
+    <ul *ngFor="let device of process.devices" class="list-container">
+      <h2>Device ID: {{ device.id }} - IP: {{ device.ipAddress }}</h2>
+      <li class=item *ngFor="let register of device.registers">
+          <div class="text-container">Tag Name: {{ register.tagName }} - </div>
+          <div class="box">Value: {{ register.value }}</div>
+      </li>
+    </ul>
+  </div>
+</div>

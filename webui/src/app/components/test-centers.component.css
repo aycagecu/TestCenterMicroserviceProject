@@ -1,0 +1,58 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-gap: 10px;
+}
+
+.grid-item {
+  background-color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-style :ridge;
+}
+
+.list-container {
+  display: flex;
+  flex-wrap: wrap; /* Eğer kutu ve yazılar sığmazsa bir sonraki satıra geçsin */
+  background-color: #F2ECF3;
+  border-style: ridge;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center; /* Kutu ve yazıyı dikey olarak hizalamak için */
+  margin-right: 10px; /* Kutu ve yazılar arasında boşluk bırakır */
+  flex-direction: row; /* Kutu ve yazıları yatay düzlemde sıralar */
+  display: flex;
+}
+
+.text-container {
+  margin-right: 5px; /* Kutu ve yazı arasında boşluk bırakır */
+  flex-wrap: nowrap;
+}
+
+.box {
+  background-color: #6C9FFF;
+  color: #133981;
+  padding: 10px;
+  border-radius: 5px;
+  vertical-align: middle; /* Kutunun içindeki metnin dikey hizalamasını sağlar */
+  flex-wrap: nowrap;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-style: outset;
+}
+
+li {
+  list-style-type: none;
+}
+
+.istasyon {
+  padding-top: 5px;
+  text-align: center;
+  background-color: #6C9FFF;
+  height: 30px;
+  font-size: larger;
+  border-style: ridge;
+}

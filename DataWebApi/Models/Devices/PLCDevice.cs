@@ -10,10 +10,6 @@ namespace DataWebApi.Models.Devices
             plc = new Plc(CpuType.S71500, ipAddress, 0, 1);
         }
 
-        public PLCDevice(int id,string ipAddress, List<Register> registers) : base(id,ipAddress, registers)
-        {
-            plc = new Plc(CpuType.S71500, ipAddress, 0, 1);
-        }
         public PLCDevice()
         {
             
@@ -30,29 +26,29 @@ namespace DataWebApi.Models.Devices
 
         public override void ReadRegisters()
         {
-            ConnectPLC();
-            if (plc.IsConnected)
-            {
+            //ConnectPLC();
+            //if (plc.IsConnected)
+            //{
 
-                foreach (var register in registers)
-                {
-                    try
-                    {
-                        if (register.IsReadable())
-                        {
-                            register.SetValue(plc.Read(register.address));
-                            db.SaveChanges();
-                        }
+            //    foreach (var register in registers)
+            //    {
+            //        try
+            //        {
+            //            if (register.IsReadable())
+            //            {
+            //                register.SetValue(plc.Read(register.address));
+            //                db.SaveChanges();
+            //            }
 
-                    }
-                    catch (Exception e)
-                    {
-                        Console.Write(e.Message);
-                    }
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            Console.Write(e.Message);
+            //        }
 
-                }
-            }
-            DisconnectPLC();
+            //    }
+            //}
+            //DisconnectPLC();
         }
 
         public override void WriteRegister(string address, object value)

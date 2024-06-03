@@ -18,12 +18,6 @@ namespace DataWebApi.Models.Devices
 
         }
 
-        public BaseDevice(int id, string ipAddress, List<Register> registers)
-        {
-            this.Id = id;
-            this.ipAddress = ipAddress;
-            this.registers = registers;
-        }
         public BaseDevice(string ipAddress, List<Register> registers)
         {
             this.ipAddress = ipAddress;

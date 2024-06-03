@@ -16,17 +16,11 @@ namespace DataWebApi.Models.Devices
 {
     public class RTUDevice : BaseDevice
     {
-        private byte slaveId;
-        private int port;
+        public byte slaveId { get; set; }
+        public int port { get; set; }
         private TcpClient tcpClient;
         private ModbusIpMaster master;
 
-        public RTUDevice(int id, string ipAddress, byte slaveId, List<Register> registers) : base(id, ipAddress, registers)
-        {
-            //modbus icin gerekli
-            port = 502;
-            this.slaveId = slaveId;
-        }
         public RTUDevice(string ipAddress, byte slaveId, List<Register> registers) : base(ipAddress, registers)
         {
             //modbus icin gerekli
@@ -55,27 +49,27 @@ namespace DataWebApi.Models.Devices
 
         public override void ReadRegisters()
         {
-            ConnectRTU();
-            if (tcpClient.Connected)
-            {
-                foreach (var register in registers)
-                {
-                    try
-                    {
-                        if (register.IsReadable())
-                        {
-                            register.SetValue(master.ReadHoldingRegisters(slaveId, Convert.ToUInt16(register.address) ,1));
-                            db.SaveChanges();
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.Write(e.Message);
-                    }
+            //ConnectRTU();
+            //if (tcpClient.Connected)
+            //{
+            //    foreach (var register in registers)
+            //    {
+            //        try
+            //        {
+            //            if (register.IsReadable())
+            //            {
+            //                register.SetValue(master.ReadHoldingRegisters(slaveId, Convert.ToUInt16(register.address) ,1));
+            //                db.SaveChanges();
+            //            }
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            Console.Write(e.Message);
+            //        }
 
-                }
-            }
-            DisconnectRTU();
+            //    }
+            //}
+            //DisconnectRTU();
         }
 
         public override void WriteRegister(string address, object value)

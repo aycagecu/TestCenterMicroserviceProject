@@ -34,4 +34,10 @@
 		<PackageReference Include="System.IO.Ports" Version="8.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\BuildingBlocks\EventBus\EventBus.Base\EventBus.Base.csproj" />
+	  <ProjectReference Include="..\BuildingBlocks\EventBus\EventBus.Factory\EventBus.Factory.csproj" />
+	  <ProjectReference Include="..\EventBus\EventBus.RabbitMQ\EventBus.RabbitMQ.csproj" />
+	</ItemGroup>
+
 </Project>

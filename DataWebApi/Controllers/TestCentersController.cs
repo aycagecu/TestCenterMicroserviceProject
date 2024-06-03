@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataWebApi;
 using DataWebApi.Models;
+using DataWebApi.Models.Devices;
 
 namespace DataWebApi.Controllers
 {
@@ -27,7 +28,7 @@ namespace DataWebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TestCenter>>> GetTestCenter()
         {
-            //_testCenterController.GetValues();
+            _testCenterController.GetValues();
             return await _context.TestCenter.ToListAsync();
         }
 

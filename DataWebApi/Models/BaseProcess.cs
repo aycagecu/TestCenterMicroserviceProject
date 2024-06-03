@@ -17,12 +17,6 @@ namespace DataWebApi.Models
         {
             
         }
-        public BaseProcess(int id,List<BaseDevice> devices)
-        {
-            this.Id = id;
-            this.devices = devices;
-            deviceCount = devices.Count;
-        }
         public BaseProcess(List<BaseDevice> devices)
         {
             this.devices = devices;

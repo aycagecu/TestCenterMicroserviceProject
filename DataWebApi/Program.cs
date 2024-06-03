@@ -1,9 +1,12 @@
 using CatalogService.Api.Extensions;
 using Consul;
 using DataWebApi;
-using Microsoft.AspNetCore.Http.Features;
+using EventBus.Base.Abstraction;
+using EventBus.Base;
+using EventBus.Factory;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Client;
 using System.Configuration;
 using System.Globalization;
 
@@ -14,6 +17,45 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddSingleton<IEventBus>(sp =>
+{
+    EventBusConfig config = new()
+    {
+        ConnectionRetryCount = 5,
+        EventNameSuffix = "IntegrationEvent",
+        SubscriberClientAppName = "BasketService",
+        EventBusType = EventBusType.RabbitMQ,
+        Connection = new ConnectionFactory()
+        {
+            HostName = "localhost"
+            //HostName = "localhost",
+            //Port = 15672,
+            //UserName = "guest",
+            //Password = "guest",
+            //VirtualHost="/"
+        }
+
+        //Connection = new ConnectionFactory()
+        //{
+        //    //HostName = "c_rabbitmq"
+        //    HostName = "http://localhost:15672"
+        //}
+    };
+
+    return EventBusFactory.Create(config, sp);
+});
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200") // Angular uygulamanýzýn URL'si
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
 builder.Services.Configure<RequestLocalizationOptions>(options =>
 {
     var supportedCultures = new[]
@@ -52,8 +94,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-app.RegisterWithConsul(lifetime);
-
+app.UseCors("AllowSpecificOrigin");
 app.MapControllers();
 
 app.Run();
+app.RegisterWithConsul(lifetime);

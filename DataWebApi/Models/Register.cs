@@ -20,15 +20,6 @@ namespace DataWebApi.Models
         {
             
         }
-        public Register(int id,string tagName, string address, bool isReadable, bool isWritable, string value = "")
-        {
-            this.Id = id;
-            this.tagName = tagName;
-            this.address = address;
-            SetValue<string>(value);
-            this.isWritable = isWritable;
-            this.isReadable = isReadable;
-        }
         public Register(string tagName, string address, bool isReadable, bool isWritable, string value="" )
         {
             this.tagName = tagName;

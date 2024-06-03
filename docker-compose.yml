@@ -34,19 +34,20 @@ services:
       context: .
       dockerfile: ApiGateway/Dockerfile
     ports:
-      - 8001:8080
+      - 8001:5000
     networks:
       - backend
-      - frontend
-      
-  angularwebui:
-    container_name: angular-we-ui
-    image: ${DOCKER_REGISTRY-}blazorserverwebui
+
+  webui:
+    container_name: web-ui
+    image: ${DOCKER_REGISTRY-}my-angular-app-image
     build:
       context: .
-      dockerfile: BlazorServerWebUI/Dockerfile
+      dockerfile: webui/Dockerfile
     ports:
-      - 8002:80
+      - "80:80"
     networks:
-      - frontend 
+      - backend
+      
+
 
