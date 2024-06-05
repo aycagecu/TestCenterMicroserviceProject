@@ -42,6 +42,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserInterface", "UserInterf
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "webui", "webui\webui.esproj", "{98547B2D-7839-4015-A25E-84BE0DD71682}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataWriteAPI", "DataWriteAPI\DataWriteAPI.csproj", "{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -88,6 +90,10 @@ Global
 		{98547B2D-7839-4015-A25E-84BE0DD71682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98547B2D-7839-4015-A25E-84BE0DD71682}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98547B2D-7839-4015-A25E-84BE0DD71682}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{EC3C33D5-A46A-4D33-B949-10A941A41534} = {BE4651A8-439D-41D5-B935-873DC6DC4437}
 		{631971D5-73EF-4804-B3FD-22FA1D30616D} = {EC3C33D5-A46A-4D33-B949-10A941A41534}
 		{98547B2D-7839-4015-A25E-84BE0DD71682} = {DEC2D9E9-5D30-4407-85B0-F57F61D006CA}
+		{0ADC3441-8645-44DB-B1F4-2AFCC37E44D6} = {9F868264-958E-45DF-9191-9617538BBCAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {875BC6C5-DCAE-4DD2-9D67-3A62274525EF}

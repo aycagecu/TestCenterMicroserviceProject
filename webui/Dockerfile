@@ -1,19 +1,23 @@
-# Stage 1: Build the Angular app
-FROM node:20.13.1 as build
+# İmajı tanımla
+FROM node:latest AS build
 
-WORKDIR /app
+# Çalışma dizinini belirle
+WORKDIR /webui
 
-COPY package.json package-lock.json ./
+# Package dosyalarını kopyala
+COPY "source/repos/TestCenterProject/webui/package*.json" ./
+
+# NPM paketlerini yükle
 RUN npm install
 
-COPY . ./
-RUN npm run build --prod
+# Proje dosyalarını kopyala
+COPY "source/repos/TestCenterProject/webui/." ./
 
-# Stage 2: Serve the app with an HTTP server
-FROM nginx:alpine
+# Projeyi derle
+RUN npm run build
 
-COPY --from=build /app/dist/webui /usr/share/nginx/html
+# Portu aç
+EXPOSE 4200
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Uygulamayı başlat
+CMD ["npm", "start"]

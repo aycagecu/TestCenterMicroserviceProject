@@ -2,6 +2,7 @@ version: '3.4'
 
 networks:
   backend:
+  # frontend:
 
 services:
   customerdb:
@@ -38,16 +39,16 @@ services:
     networks:
       - backend
 
-  webui:
-    container_name: web-ui
-    image: ${DOCKER_REGISTRY-}my-angular-app-image
-    build:
-      context: .
-      dockerfile: webui/Dockerfile
-    ports:
-      - "80:80"
-    networks:
-      - backend
+  # webui:
+  #   container_name: web-ui
+  #   image: ${DOCKER_REGISTRY-}angular-frontend
+  #   build:
+  #     context: .
+  #     dockerfile: webui/Dockerfile
+  #   ports:
+  #     - "4200:4200"
+  #   networks:
+  #     - frontend
       
 
 

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataWebApi.Models
+namespace DataReadApi.Models
 {
     public class Register
     {

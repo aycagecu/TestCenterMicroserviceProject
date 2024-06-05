@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace DataWebApi.Models.Devices
+namespace DataReadApi.Models.Devices
 {
     public class BaseDevice : IDevice
     {
@@ -9,10 +9,9 @@ namespace DataWebApi.Models.Devices
         public int Id { get; set; }
         public string ipAddress { get; set; }
         public List<Register> registers { get; set; }
-        protected TestCenterDbContext db;
+        protected WriteDbContext db;
 
-        [ForeignKey("BaseProcess")]
-        public int baseProcessId {get; set; }
+
         public BaseDevice()
         {
 

@@ -12,7 +12,7 @@ namespace DataWebApi.Models
         private int deviceCount {  get; set; }
 
         [ForeignKey("TestCenter")]
-        public int testCenterId;
+        public int testCenterId {  get; set; }
         public BaseProcess()
         {
             

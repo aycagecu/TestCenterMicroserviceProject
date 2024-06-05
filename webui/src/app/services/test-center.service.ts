@@ -12,7 +12,7 @@ import { catchError } from 'rxjs/operators';
 
 
 export class TestCenterService {
-  private apiUrl = 'http://localhost:51355/api/TestCenters'; // Test Center API URL'si
+  private apiUrl = 'http://localhost:60706/api/TestCenters'; // Test Center API URL'si
 
   constructor(private http: HttpClient) { }
 
