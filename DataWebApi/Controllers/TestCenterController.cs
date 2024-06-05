@@ -25,6 +25,174 @@ namespace DataWebApi.Controllers
                 List<BaseDevice> deviceList = new List<BaseDevice>();
                 List<BaseProcess> processList = new List<BaseProcess>();
 
+
+                register = new Register("clock_1hz", "M0.5", true, true);
+                regList.Add(register);
+
+                register = new Register("Limitswitch", "I0.0", true, true);
+                regList.Add(register);
+
+                register = new Register("Local_Control", "I0.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_circulation_scenario_start", "M32.0", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_collect_scenario_start", "M32.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_current_level", "IW64", true, true);
+                regList.Add(register);
+                
+                register = new Register("promotion1_current_level_norm", "MD2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_current_level_real", "MD36", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_drain_scenario_start", "M32.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_level_update", "M32.3", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_motor1", "Q0.0", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_motor2", "Q0.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_motor3", "Q0.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_pump_flow_meter", "I0.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_reset_sim", "M51.4", true, true);
+                regList.Add(register);
+
+                register = new Register("WebServerTag", "MW7", true, true);
+                regList.Add(register);
+
+
+                PLCDevice S7_1200_Promotion1 = new PLCDevice("192.168.41.10", new List<Register>(regList));
+                deviceList.Add(S7_1200_Promotion1);
+
+
+                register = null;
+                regList.Clear();
+                register = new Register("clock_1hz", "M0.5", true, true);
+                regList.Add(register);
+
+                register = new Register("LimitSwitch", "I0.0", true, true);
+                regList.Add(register);
+
+                register = new Register("Local_Control", "I0.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_circulation_scenario_start", "M12.0", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_collect_scenario_start", "M12.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_current_level", "IW64", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_current_level_norm", "MD27", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_current_level_real", "MD32", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_drain_scenario_start", "M12.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_motor1", "Q0.0", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_motor2", "Q0.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_motor3", "Q0.2", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion2_pump_flow_meter", "I0.1", true, true);
+                regList.Add(register);
+
+                register = new Register("promotion1_reset_sim", "M21.5", true, true);
+                regList.Add(register);
+
+                register = new Register("WebServerTag", "MW7", true, true);
+                regList.Add(register);
+
+
+                PLCDevice S7_1200_Promotion2 = new PLCDevice("192.168.42.10", new List<Register>(regList));
+                deviceList.Add(S7_1200_Promotion2);
+
+
+
+                register = null;
+                regList.Clear();
+                register = new Register("clock_1hz", "M0.5", true, true);
+                regList.Add(register);
+
+                register = new Register("Flowmeter", "I10.0", true, true);
+                regList.Add(register);
+
+                register = new Register("Level_Update2", "M20.3", true, true);
+                regList.Add(register);
+
+                register = new Register("Limitswitch", "I10.1", true, true);
+                regList.Add(register);
+
+                register = new Register("Local_Control", "I10.2", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_circulation_scenario_start", "M20.5", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_collect_scenario_start", "M20.1", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_current_level", "IW0", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_current_level_norm", "MD22", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_current_level_real", "MD32", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_drain_scenario_start", "M20.2", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_reset_sim", "M20.4", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_total_cm_evacuated", "MD16", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_total_volume_evacuated", "MD10", true, true);
+                regList.Add(register);
+
+                register = new Register("treatment_valf", "Q4.04", true, true);
+                regList.Add(register);
+
+                register = new Register("WebServerTag", "MW7", true, true);
+                regList.Add(register);
+
+
+                PLCDevice S7_1200_Treatment = new PLCDevice("192.168.43.10", new List<Register>(regList));
+                deviceList.Add(S7_1200_Treatment);
+
+
+                BaseProcess WasteWaterProcess = new BaseProcess(new List<BaseDevice>(deviceList));
+                processList.Add(WasteWaterProcess);
+
+                deviceList.Clear();
+                register = null;
+                regList.Clear();
                 register = new Register("Dam_CurrentVolume", "0", true, true);
                 regList.Add(register);
                 register = new Register("Dam_Level", "1", true, true);
@@ -183,175 +351,6 @@ namespace DataWebApi.Controllers
 
                 BaseProcess PotableWaterProcess = new BaseProcess(new List<BaseDevice>(deviceList));
                 processList.Add(PotableWaterProcess);
-
-
-                deviceList.Clear();
-                register = null;
-                regList.Clear();
-                register = new Register("clock_1hz", "M0.5", true, true);
-                regList.Add(register);
-     
-                register = new Register("Limitswitch", "I0.0", true, true);
-                regList.Add(register);
-   
-                register = new Register("Local_Control", "I0.2", true, true);
-                regList.Add(register);
-       
-                register = new Register("promotion1_circulation_scenario_start", "M32.0", true, true);
-                regList.Add(register);
-
-                register = new Register("promotion1_collect_scenario_start", "M32.1", true, true);
-                regList.Add(register);
-          
-                register = new Register("promotion1_current_level", "IW64", true, true);
-                regList.Add(register);
-        ;
-                register = new Register("promotion1_current_level_norm", "MD2", true, true);
-                regList.Add(register);
-          
-                register = new Register("promotion1_current_level_real", "MD36", true, true);
-                regList.Add(register);
-           
-                register = new Register("promotion1_drain_scenario_start", "M32.2", true, true);
-                regList.Add(register);
-             
-                register = new Register("promotion1_level_update", "M32.3", true, true);
-                regList.Add(register);
-             
-                register = new Register("promotion1_motor1", "Q0.0", true, true);
-                regList.Add(register);
-             
-                register = new Register("promotion1_motor2", "Q0.1", true, true);
-                regList.Add(register);
-                       
-                register = new Register("promotion1_motor3", "Q0.2", true, true);
-                regList.Add(register);
-          
-                register = new Register("promotion1_pump_flow_meter", "I0.1", true, true);
-                regList.Add(register);
-     
-                register = new Register("promotion1_reset_sim", "M51.4", true, true);
-                regList.Add(register);
-        
-                register = new Register("WebServerTag", "MW7", true, true);
-                regList.Add(register);
-           
-
-                PLCDevice S7_1200_Promotion1 = new PLCDevice("192.168.41.10", new List<Register>(regList));
-                deviceList.Add(S7_1200_Promotion1);
-     
-
-                register = null;
-                regList.Clear();
-                register = new Register("clock_1hz", "M0.5", true, true);
-                regList.Add(register);
-       
-                register = new Register("LimitSwitch", "I0.0", true, true);
-                regList.Add(register);
-        
-                register = new Register("Local_Control", "I0.2", true, true);
-                regList.Add(register);
-         
-                register = new Register("promotion2_circulation_scenario_start", "M12.0", true, true);
-                regList.Add(register);
-    
-                register = new Register("promotion2_collect_scenario_start", "M12.1", true, true);
-                regList.Add(register);
-        
-                register = new Register("promotion2_current_level", "IW64", true, true);
-                regList.Add(register);
-        
-                register = new Register("promotion2_current_level_norm", "MD27", true, true);
-                regList.Add(register);
-         
-                register = new Register("promotion2_current_level_real", "MD32", true, true);
-                regList.Add(register);
-
-                register = new Register("promotion2_drain_scenario_start", "M12.2", true, true);
-                regList.Add(register);
-           
-                register = new Register("promotion2_motor1", "Q0.0", true, true);
-                regList.Add(register);
-  
-                register = new Register("promotion2_motor2", "Q0.1", true, true);
-                regList.Add(register);
-  
-                register = new Register("promotion2_motor3", "Q0.2", true, true);
-                regList.Add(register);
-       
-                register = new Register("promotion2_pump_flow_meter", "I0.1", true, true);
-                regList.Add(register);
-         
-                register = new Register("promotion1_reset_sim", "M21.5", true, true);
-                regList.Add(register);
-          
-                register = new Register("WebServerTag", "MW7", true, true);
-                regList.Add(register);
-           
-
-                PLCDevice S7_1200_Promotion2 = new PLCDevice("192.168.42.10", new List<Register>(regList));
-                deviceList.Add(S7_1200_Promotion2);
-          
-
-
-                register = null;
-                regList.Clear();
-                register = new Register("clock_1hz", "M0.5", true, true);
-                regList.Add(register);
-     
-                register = new Register("Flowmeter", "I10.0", true, true);
-                regList.Add(register);
-
-                register = new Register("Level_Update2", "M20.3", true, true);
-                regList.Add(register);
-
-                register = new Register("Limitswitch", "I10.1", true, true);
-                regList.Add(register);
-         
-                register = new Register("Local_Control", "I10.2", true, true);
-                regList.Add(register);
-            
-                register = new Register("treatment_circulation_scenario_start", "M20.5", true, true);
-                regList.Add(register);
-            
-                register = new Register("treatment_collect_scenario_start", "M20.1", true, true);
-                regList.Add(register);
-               
-                register = new Register("treatment_current_level", "IW0", true, true);
-                regList.Add(register);
-                
-                register = new Register("treatment_current_level_norm", "MD22", true, true);
-                regList.Add(register);
-      
-                register = new Register("treatment_current_level_real", "MD32", true, true);
-                regList.Add(register);
-        
-                register = new Register("treatment_drain_scenario_start", "M20.2", true, true);
-                regList.Add(register);
-       
-                register = new Register("treatment_reset_sim", "M20.4", true, true);
-                regList.Add(register);
-         
-                register = new Register("treatment_total_cm_evacuated", "MD16", true, true);
-                regList.Add(register);
-           
-                register = new Register("treatment_total_volume_evacuated", "MD10", true, true);
-                regList.Add(register);
-   
-                register = new Register("treatment_valf", "Q4.04", true, true);
-                regList.Add(register);
-   
-                register = new Register("WebServerTag", "MW7", true, true);
-                regList.Add(register);
-      
-
-                PLCDevice S7_1200_Treatment = new PLCDevice("192.168.43.10", new List<Register>(regList));
-                deviceList.Add(S7_1200_Treatment);
-   
-
-                BaseProcess WasteWaterProcess = new BaseProcess(new List<BaseDevice>(deviceList));
-                processList.Add(WasteWaterProcess);
-        
 
                 testCenter = new TestCenter(new List<BaseProcess>(processList));
                 db.Add(testCenter);

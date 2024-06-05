@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataReadApi;
 using DataReadApi.Models;
-using EventBus.Base.Abstraction;
+//using EventBus.Base.Abstraction;
 using DataReadApi.Models.Devices;
 
 namespace DataWriteAPI.Controllers
@@ -20,7 +20,7 @@ namespace DataWriteAPI.Controllers
         private RegisterController registerController;
         //private readonly IEventBus _eventBus;
 
-        public RegistersController(IEventBus eventBus,WriteDbContext context)
+        public RegistersController(WriteDbContext context)
         {
             //_eventBus = eventBus;
             _context = context;
@@ -93,12 +93,12 @@ namespace DataWriteAPI.Controllers
                 try
                 {
                     var reg = await _context.Register.FindAsync(register.Id);
-                    reg.Value=register.Value;
+                    reg.Value = register.Value;
                     await _context.SaveChangesAsync();
                     // Register değişikliğini bir olay mesajı olarak yayınla
                     //_eventBus.Publish(new RegisterChangedIntegrationEvent(register));
-              
-                    return Ok();
+
+                    //return Ok();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -116,7 +116,6 @@ namespace DataWriteAPI.Controllers
 
             registerController.updateRegisters(registers);
             return CreatedAtAction("GetRegister", new { id = registers[0].Id }, registers[0]);
-
 
         }
 

@@ -14,6 +14,7 @@ namespace DataWriteAPI.Controllers
         }
         public void Initialize()
         {
+
             if (!db.Register.Any())
             {
                 Register register;
